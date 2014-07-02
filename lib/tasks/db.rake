@@ -1,9 +1,7 @@
 namespace :db do
   desc "migrate your database"
   task :migrate do
-    require 'bundler'
-    Bundler.require
-    DB::Connection.establish
+    Database.connection.establish!
     ActiveRecord::Migrator.migrate('./db/migrate')
   end
 end
