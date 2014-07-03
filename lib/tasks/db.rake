@@ -18,7 +18,14 @@ namespace :db do
   end
 
   task :migrate do
-    Database.connection.establish!
-    ActiveRecord::Migrator.migrate('./db/migrate')
+    DatabaseConnection.new(DatabaseTasks.env)
+
+    migration_path = File.expand_path(
+      "../../../db", __FILE__
+    )
+
+    puts "Migrating #{migration_path}"
+
+    ActiveRecord::Migrator.migrate(migration_path)
   end
 end
