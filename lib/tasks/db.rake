@@ -25,12 +25,18 @@ namespace :db do
 
   task :migrate do
     DatabaseConnection.new(DatabaseTasks.env)
-
     migration_path = root_dir + "/db"
-
     puts "Migrating #{migration_path}"
 
     ActiveRecord::Migrator.migrate(migration_path)
+  end
+
+  task :rollback do
+    DatabaseConnection.new(DatabaseTasks.env)
+    migration_path = root_dir + "/db"
+    puts "Migrating #{migration_path}"
+
+    ActiveRecord::Migrator.rollback(migration_path)
   end
 
   task :create_migration do
