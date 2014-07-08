@@ -14,7 +14,6 @@ def db_dir
   )
 end
 
-
 namespace :db do
   task :create do
     DatabaseTasks.create_current
