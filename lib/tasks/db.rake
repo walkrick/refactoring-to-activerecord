@@ -8,11 +8,12 @@ DatabaseTasks.env = ENV["DB_ENV"] || "test"
 
 ActiveRecord::Base.configurations = DatabaseTasks.database_configuration
 
-def root_dir
+def db_dir
   File.expand_path(
-    "../../..", __FILE__
+    "../../../db", __FILE__
   )
 end
+
 
 namespace :db do
   task :create do
@@ -25,18 +26,12 @@ namespace :db do
 
   task :migrate do
     DatabaseConnection.new(DatabaseTasks.env)
-    migration_path = root_dir + "/db"
-    puts "Migrating #{migration_path}"
-
-    ActiveRecord::Migrator.migrate(migration_path)
+    ActiveRecord::Migrator.migrate(db_dir)
   end
 
   task :rollback do
     DatabaseConnection.new(DatabaseTasks.env)
-    migration_path = root_dir + "/db"
-    puts "Migrating #{migration_path}"
-
-    ActiveRecord::Migrator.rollback(migration_path)
+    ActiveRecord::Migrator.rollback(db_dir)
   end
 
   task :create_migration do
@@ -44,7 +39,7 @@ namespace :db do
     migration_name = STDIN.gets.chomp
     migration_class_name = migration_name.split("_").map(&:capitalize).join
     timestamp = Time.now.to_i
-    migration_file_name = root_dir + "/db/migrate/#{timestamp}_#{migration_name}.rb"
+    migration_file_name = db_dir + "/migrate/#{timestamp}_#{migration_name}.rb"
 
     file = File.new(migration_file_name, "w+")
 
