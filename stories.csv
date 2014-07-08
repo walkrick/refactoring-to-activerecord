@@ -1,0 +1,27 @@
+Id,Title,Labels,Iteration,Iteration Start,Iteration End,Type,Estimate,Current State,Created at,Accepted at,Deadline,Requested By,Description,URL,Owned By
+74180570,"As an anonymous person, I can see the homepage (root path) with a registration button","",1,"Jun 30, 2014","Jul 6, 2014",feature,1,unstarted,"Jun 30, 2014",,,Jeff Taggart,,https://www.pivotaltracker.com/story/show/74180570,
+74180606,"As an anonymous person, I can click the registration button and view a registration form","",1,"Jun 30, 2014","Jul 6, 2014",feature,1,unstarted,"Jun 30, 2014",,,Jeff Taggart,"This form has an input field for my username, password and a submit button that does nothing yet.",https://www.pivotaltracker.com/story/show/74180606,
+74180658,"As an anonymous person, I can fill out the registration form to create an account","",1,"Jun 30, 2014","Jul 6, 2014",feature,2,unstarted,"Jun 30, 2014",,,Jeff Taggart,"When submitting the form, I should see ""Thank you for registering""
+
+This message should go away when I refresh the page.",https://www.pivotaltracker.com/story/show/74180658,
+74180746,"As an anonymous person, when I'm on the homepage, I can fill in my username and password, click ""Login"", and be log in","",1,"Jun 30, 2014","Jul 6, 2014",feature,2,unstarted,"Jun 30, 2014",,,Jeff Taggart,"When a user submits the form they should be redirected to the home page and see the text ""Welcome, #{username}""",https://www.pivotaltracker.com/story/show/74180746,
+74180908,"As a logged in user, I no longer see the ""Login"" or ""Registration"" button, but instead ""Logout""","",1,"Jun 30, 2014","Jul 6, 2014",feature,1,unstarted,"Jun 30, 2014",,,Jeff Taggart,,https://www.pivotaltracker.com/story/show/74180908,
+74180946,"As a logged in user, when I click ""Logout"", I am logged out","",1,"Jun 30, 2014","Jul 6, 2014",feature,2,unstarted,"Jun 30, 2014",,,Jeff Taggart,"Clicking ""Logout"" will bring the user back to the homepage. They should see the ""Login"" and ""Register"" buttons. The welcome message is gone.",https://www.pivotaltracker.com/story/show/74180946,
+74180980,Exercise Goal,"",1,"Jun 30, 2014","Jul 6, 2014",release,,unstarted,"Jun 30, 2014",,,Jeff Taggart,,https://www.pivotaltracker.com/story/show/74180980,
+74180832,"As an anonymous person, If I fill in an empty username OR an empty password OR both, I see a message informing me that I need to fill in that information","",2,"Jul 7, 2014","Jul 13, 2014",feature,3,unstarted,"Jun 30, 2014",,,Jeff Taggart,"""Username is required""
+OR
+""Password is required""
+OR
+""Username and password is required""
+
+is presented above the form",https://www.pivotaltracker.com/story/show/74180832,
+74180876,"As a anonymous user, I cannot register with a username that already exists","",2,"Jul 7, 2014","Jul 13, 2014",feature,2,unstarted,"Jun 30, 2014",,,Jeff Taggart,I see a message informing me that this username is already taken,https://www.pivotaltracker.com/story/show/74180876,
+74182126,"As a logged in user, I can view a list of users on my homepage","",2,"Jul 7, 2014","Jul 13, 2014",feature,2,unstarted,"Jun 30, 2014",,,Jeff Taggart,"This ONLY shows up for logged in users, User's that are not logged in do not see the list",https://www.pivotaltracker.com/story/show/74182126,
+74182142,"As a logged in user, I don't see myself on the list of users","",2,"Jul 7, 2014","Jul 13, 2014",feature,1,unstarted,"Jun 30, 2014",,,Jeff Taggart,,https://www.pivotaltracker.com/story/show/74182142,
+74182158,"As a logged in user, I can delete other users","",2,"Jul 7, 2014","Jul 13, 2014",feature,3,unstarted,"Jun 30, 2014",,,Jeff Taggart,,https://www.pivotaltracker.com/story/show/74182158,
+74182478,Awesome Goal,"",2,"Jul 7, 2014","Jul 13, 2014",release,,unstarted,"Jun 30, 2014",,,Jeff Taggart,,https://www.pivotaltracker.com/story/show/74182478,
+74182502,"As a logged in User, I can create a fish with a wikipedia page","",3,"Jul 14, 2014","Jul 20, 2014",feature,3,unstarted,"Jun 30, 2014",,,Jeff Taggart,Any logged in user can see all fish on the homepage,https://www.pivotaltracker.com/story/show/74182502,
+74182522,"As a logged in user, I can only view fish created by myself on the homepage","",3,"Jul 14, 2014","Jul 20, 2014",feature,3,unstarted,"Jun 30, 2014",,,Jeff Taggart,A logged in user can no longer see fish created by other users,https://www.pivotaltracker.com/story/show/74182522,
+74182600,"As a logged in user, I can click on another user's name and view fish created by them","",3,"Jul 14, 2014","Jul 20, 2014",feature,3,unstarted,"Jun 30, 2014",,,Jeff Taggart,,https://www.pivotaltracker.com/story/show/74182600,
+74182618,"As a logged in user, I can delete fish created by myself","",4,"Jul 21, 2014","Jul 27, 2014",feature,2,unstarted,"Jun 30, 2014",,,Jeff Taggart,I cannot delete other user's fish,https://www.pivotaltracker.com/story/show/74182618,
+74182490,Life Goal,"",4,"Jul 21, 2014","Jul 27, 2014",release,,unstarted,"Jun 30, 2014",,,Jeff Taggart,,https://www.pivotaltracker.com/story/show/74182490,
