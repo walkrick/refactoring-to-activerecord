@@ -9,8 +9,6 @@ class App < Sinatra::Application
   end
 
   get "/" do
-    @database_connection.sql("INSERT INTO users (name) VALUES ('hello')")
-
-    @database_connection.sql("SELECT * from users").to_s
+    "Hello"
   end
 end
