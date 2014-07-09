@@ -18,9 +18,10 @@ Follow the mockups and stories to get started. The mockups only go through to us
 1. Import `stories.csv` into tracker.
 1. Start the first story.
 1. `$ cp config/database.yml.example config/database.yml`
-1. `$ createdb -U gschool sql_ar`
-1. `$ createdb -U gschool sql_ar_test`
-1. Run the command `rake db:migrate`
+1. `$ rake db:create`
+1. `$ DB_ENV=test rake db:create`
+1. `$ rake db:migrate`
+1. `$ DB_ENV=test rake db:migrate`
 1. Start a story
 1. *Write a test!*
 1. See the test fail for the _reason you expect_
