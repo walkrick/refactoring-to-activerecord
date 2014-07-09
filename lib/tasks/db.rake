@@ -15,24 +15,29 @@ def db_dir
 end
 
 namespace :db do
+  desc "Create the database for the current environment"
   task :create do
     DatabaseTasks.create_current
   end
 
+  desc "Drop the database for the current environment"
   task :drop do
     DatabaseTasks.drop_current
   end
 
+  desc "Migrate the database for the current environment"
   task :migrate do
     DatabaseConnection.new(DatabaseTasks.env)
     ActiveRecord::Migrator.migrate(db_dir)
   end
 
+  desc "Rollback the database for the current environment"
   task :rollback do
     DatabaseConnection.new(DatabaseTasks.env)
     ActiveRecord::Migrator.rollback(db_dir)
   end
 
+  desc "Create a new database migration"
   task :create_migration do
     puts "What is the name of the migration? Use snakecase, i.e. name_of_migration"
     migration_name = STDIN.gets.chomp
