@@ -10,7 +10,6 @@ class DatabaseConnection
     @connection = establish_connection
   end
 
-
   def sql(sql_string)
     connection.execute(sql_string).to_a
   end
