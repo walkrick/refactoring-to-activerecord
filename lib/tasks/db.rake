@@ -4,7 +4,7 @@ require "yaml"
 include ActiveRecord::Tasks
 
 DatabaseTasks.database_configuration = YAML.load_file("config/database.yml")
-DatabaseTasks.env = ENV["DB_ENV"] || "test"
+DatabaseTasks.env = ENV["RACK_ENV"] || "development"
 
 ActiveRecord::Base.configurations = DatabaseTasks.database_configuration
 
