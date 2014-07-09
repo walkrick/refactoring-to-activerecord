@@ -12,7 +12,7 @@ describe DatabaseConnection do
 
   let(:create_table_sql) do
     <<-CREATE_SQL
-    CREATE TABLE users (
+    CREATE TABLE users_test (
       username varchar(25),
       email varchar(200),
       date_of_birth date
@@ -22,14 +22,14 @@ describe DatabaseConnection do
 
   let(:insert_hunter_sql) do
     <<-INSERT_SQL
-    INSERT INTO users (username, email, date_of_birth)
+    INSERT INTO users_test (username, email, date_of_birth)
     VALUES ('hunter', 'hunter@example.com', '2000-01-01')
     INSERT_SQL
   end
 
   let(:insert_jeff_sql) do
     <<-INSERT_SQL
-    INSERT INTO users (username, email, date_of_birth)
+    INSERT INTO users_test (username, email, date_of_birth)
     VALUES ('jeff', 'jeff@example.com', '2006-01-01')
     INSERT_SQL
   end
@@ -54,11 +54,11 @@ describe DatabaseConnection do
       }
     ]
 
-    expect(database_connection.sql("SELECT * from users")).to eq(expected_users)
+    expect(database_connection.sql("SELECT * from users_test")).to eq(expected_users)
   end
 
   it "can filter" do
-    hunter_results = database_connection.sql("SELECT * from users WHERE username = 'hunter';")
+    hunter_results = database_connection.sql("SELECT * from users_test WHERE username = 'hunter';")
 
     expected_results = [
       {
@@ -72,7 +72,7 @@ describe DatabaseConnection do
   end
 
   it "can DELETE" do
-    database_connection.sql("DELETE FROM users where username = 'hunter';")
+    database_connection.sql("DELETE FROM users_test where username = 'hunter';")
 
     expected_results = [
       {
@@ -82,6 +82,6 @@ describe DatabaseConnection do
       }
     ]
 
-    expect(database_connection.sql("SELECT * from users")).to eq(expected_results)
+    expect(database_connection.sql("SELECT * from users_test")).to eq(expected_results)
   end
 end
