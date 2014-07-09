@@ -16,6 +16,7 @@ Follow the mockups and stories to get started. The mockups only go through to us
 
 1. `bundle install`
 1. Import `stories.csv` into tracker.
+1. Create a heroku app. `$ heroku create`
 1. `$ cp config/database.yml.example config/database.yml`
 1. `$ rake db:create`
 1. `$ rake db:migrate`
@@ -25,5 +26,8 @@ Follow the mockups and stories to get started. The mockups only go through to us
 1. *Write a test!*
 1. See the test fail for the _reason you expect_
 1. Write implementation
+1. Commit and push to GitHub
+1. Push to Heroku
 1. Finish and deliver story
+1. Check heroku and bask in the glory of real software
 1. Rinse and Repeat
