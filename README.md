@@ -28,6 +28,7 @@ Follow the mockups and stories to get started. The mockups only go through to us
 1. Write implementation
 1. Commit and push to GitHub
 1. Push to Heroku
+  * run migrations on heroku if necessary!
 1. Finish and deliver story
 1. Check heroku and bask in the glory of real software
 1. Rinse and Repeat
