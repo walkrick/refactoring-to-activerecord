@@ -77,6 +77,11 @@ class App < Sinatra::Application
     erb :"fish/new"
   end
 
+  get "/fish/:id" do
+    fish = @database_connection.sql("SELECT * FROM fish WHERE id = #{params[:id]}")
+    erb :"fish/show", locals: {fish: fish}
+  end
+
   post "/fish" do
     insert_sql = <<-SQL
     INSERT INTO fish (name, wikipedia_page, user_id)
