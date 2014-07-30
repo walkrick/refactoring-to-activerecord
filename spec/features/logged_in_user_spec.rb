@@ -12,7 +12,6 @@ feature "Logged in user" do
   end
 
   before(:each) do
-    register_user("other", "1234")
     register_user("Fred", "abcd")
   end
 
@@ -28,8 +27,13 @@ feature "Logged in user" do
 
     within ".user-list" do
       expect(page).to have_no_content "hoonta"
-      expect(page).to have_content "other"
       expect(page).to have_content "Fred"
+
+      click_button "Delete"
+    end
+
+    within ".user-list" do
+      expect(page).to have_no_content "Fred"
     end
   end
 end

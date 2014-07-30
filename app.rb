@@ -61,10 +61,21 @@ class App < Sinatra::Application
     redirect "/"
   end
 
+  delete "/users/:id" do
+    delete_sql = <<-SQL
+    DELETE FROM users
+    WHERE id = #{params[:id]}
+    SQL
+
+    @database_connection.sql(delete_sql)
+
+    redirect "/"
+  end
+
   private
 
   def validate_registration_params
-    if params[:username] != "" && params[:password].length > 3  && username_available?(params[:username])
+    if params[:username] != "" && params[:password].length > 3 && username_available?(params[:username])
       return true
     end
 
