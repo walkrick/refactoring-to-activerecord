@@ -24,6 +24,7 @@ GEM
       xpath (~> 2.0)
     celluloid (0.15.2)
       timers (~> 1.1.0)
+    database_cleaner (1.2.0)
     diff-lcs (1.2.5)
     ffi (1.9.3)
     gschool_database_connection (1.0.0)
@@ -84,6 +85,7 @@ PLATFORMS
 DEPENDENCIES
   activerecord
   capybara
+  database_cleaner
   gschool_database_connection
   pg (~> 0.17.1)
   rack-flash3
