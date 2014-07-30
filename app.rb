@@ -83,16 +83,20 @@ class App < Sinatra::Application
   end
 
   post "/fish" do
-    insert_sql = <<-SQL
-    INSERT INTO fish (name, wikipedia_page, user_id)
-    VALUES ('#{params[:name]}', '#{params[:wikipedia_page]}', #{current_user["id"]})
-    SQL
+    if validate_fish_params
+      insert_sql = <<-SQL
+      INSERT INTO fish (name, wikipedia_page, user_id)
+      VALUES ('#{params[:name]}', '#{params[:wikipedia_page]}', #{current_user["id"]})
+      SQL
 
-    @database_connection.sql(insert_sql)
+      @database_connection.sql(insert_sql)
 
-    flash[:notice] = "Fish Created"
+      flash[:notice] = "Fish Created"
 
-    redirect "/"
+      redirect "/"
+    else
+      erb :"fish/new"
+    end
   end
 
   private
@@ -116,6 +120,26 @@ class App < Sinatra::Application
       error_messages.push("Password is required")
     elsif params[:password].length < 4
       error_messages.push("Password must be at least 4 characters")
+    end
+
+    flash[:notice] = error_messages.join(", ")
+
+    false
+  end
+
+  def validate_fish_params
+    if params[:name] != "" && params[:wikipedia_page] != ""
+      return true
+    end
+
+    error_messages = []
+
+    if params[:name] == ""
+      error_messages.push("Name is required")
+    end
+
+    if params[:wikipedia_page] == ""
+      error_messages.push("Wikipedia page is required")
     end
 
     flash[:notice] = error_messages.join(", ")

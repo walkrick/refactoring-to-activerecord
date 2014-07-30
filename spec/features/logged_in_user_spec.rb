@@ -49,6 +49,21 @@ feature "Logged in user" do
 
     click_link "New Fish"
 
+    click_button "Create Fish"
+
+    expect(page).to have_content "Name is required"
+    expect(page).to have_content "Wikipedia page is required"
+
+    fill_in "Wikipedia Page", with: "http://en.wikipedia.org/wiki/Coelacanth"
+    click_button "Create Fish"
+
+    expect(page).to have_content "Name is required"
+
+    fill_in "Name", with: "Coelacanth"
+    click_button "Create Fish"
+
+    expect(page).to have_content "Wikipedia page is required"
+
     fill_in "Name", with: "coelacanth"
     fill_in "Wikipedia Page", with: "http://en.wikipedia.org/wiki/Coelacanth"
     click_button "Create Fish"
