@@ -16,7 +16,7 @@ class App < Sinatra::Application
 
     if current_user
       users = @database_connection.sql("SELECT * FROM users WHERE id != #{user["id"]}")
-      fish = @database_connection.sql("SELECT * FROM fish")
+      fish = @database_connection.sql("SELECT * FROM fish WHERE user_id = #{current_user["id"]}")
       erb :signed_in, locals: {current_user: user, users: users, fish_list: fish}
     else
       erb :signed_out
@@ -79,8 +79,8 @@ class App < Sinatra::Application
 
   post "/fish" do
     insert_sql = <<-SQL
-    INSERT INTO fish (name, wikipedia_page)
-    VALUES ('#{params[:name]}', '#{params[:wikipedia_page]}')
+    INSERT INTO fish (name, wikipedia_page, user_id)
+    VALUES ('#{params[:name]}', '#{params[:wikipedia_page]}', #{current_user["id"]})
     SQL
 
     @database_connection.sql(insert_sql)

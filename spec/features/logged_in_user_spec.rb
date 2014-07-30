@@ -58,5 +58,18 @@ feature "Logged in user" do
     within ".fish-list" do
       expect(page).to have_content "coelacanth"
     end
+
+    click_button "Sign Out"
+
+    register_user("another", "t0psecret")
+
+    fill_in "Username", with: "another"
+    fill_in "Password", with: "t0psecret"
+
+    click_button "Sign In"
+
+    within ".fish-list" do
+      expect(page).to have_no_content "coelacanth"
+    end
   end
 end
