@@ -1,1 +1,6 @@
 <p>Welcome, <%= user["username"] %></p>
+
+<form action="/sessions" method="post">
+  <input type="hidden" name="_method" value="delete" />
+  <input type="submit" value="Sign Out" />
+</form>

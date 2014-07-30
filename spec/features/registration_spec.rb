@@ -29,5 +29,9 @@ feature "Registration and authentication" do
     click_button "Sign In"
 
     expect(page).to have_content "Welcome, hoonta"
+
+    click_button "Sign Out"
+
+    expect(page).to have_no_content "Welcome"
   end
 end

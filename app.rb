@@ -49,6 +49,11 @@ class App < Sinatra::Application
     redirect "/"
   end
 
+  delete "/sessions" do
+    session[:user_id] = nil
+    redirect "/"
+  end
+
   private
 
   def validate_registration_params
