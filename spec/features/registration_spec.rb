@@ -23,6 +23,20 @@ feature "Registration and authentication" do
 
     expect(page).to have_content "Thanks for registering"
 
+    click_button "Sign In"
+
+    expect(page).to have_content "Username is required, Password is required"
+
+    fill_in "Username", with: "hoonta"
+    click_button "Sign In"
+
+    expect(page).to have_content "Password is required"
+
+    fill_in "Password", with: "hoonta"
+    click_button "Sign In"
+
+    expect(page).to have_content "Username is required"
+
     fill_in "Username", with: "hoonta"
     fill_in "Password", with: "t0psecret"
 

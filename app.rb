@@ -42,11 +42,17 @@ class App < Sinatra::Application
   end
 
   post "/sessions" do
-    user = authenticate_user
+    if validate_authentication_params
+      user = authenticate_user
 
-    session[:user_id] = user["id"]
-
+      if user != nil
+        session[:user_id] = user["id"]
+      else
+        flash[:notice] = "Username/password is invalid"
+      end
+    end
     redirect "/"
+
   end
 
   delete "/sessions" do
@@ -71,6 +77,26 @@ class App < Sinatra::Application
       error_messages.push("Password is required")
     elsif params[:password].length < 4
       error_messages.push("Password must be at least 4 characters")
+    end
+
+    flash[:notice] = error_messages.join(", ")
+
+    false
+  end
+
+  def validate_authentication_params
+    if params[:username] != "" && params[:password] != ""
+      return true
+    end
+
+    error_messages = []
+
+    if params[:username] == ""
+      error_messages.push("Username is required")
+    end
+
+    if params[:password] == ""
+      error_messages.push("Password is required")
     end
 
     flash[:notice] = error_messages.join(", ")
