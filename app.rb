@@ -51,8 +51,8 @@ class App < Sinatra::Application
         flash[:notice] = "Username/password is invalid"
       end
     end
-    redirect "/"
 
+    redirect "/"
   end
 
   delete "/sessions" do
@@ -63,7 +63,7 @@ class App < Sinatra::Application
   private
 
   def validate_registration_params
-    if params[:username] != "" && params[:password].length > 3
+    if params[:username] != "" && params[:password].length > 3  && username_available?(params[:username])
       return true
     end
 
@@ -71,6 +71,10 @@ class App < Sinatra::Application
 
     if params[:username] == ""
       error_messages.push("Username is required")
+    end
+
+    if !username_available?(params[:username])
+      error_messages.push("Username has already been taken")
     end
 
     if params[:password] == ""
@@ -102,6 +106,12 @@ class App < Sinatra::Application
     flash[:notice] = error_messages.join(", ")
 
     false
+  end
+
+  def username_available?(username)
+    existing_users = @database_connection.sql("SELECT * FROM users where username = '#{username}'")
+
+    existing_users.length == 0
   end
 
   def authenticate_user

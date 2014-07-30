@@ -1,7 +1,7 @@
 require "spec_helper"
 
 feature "Registration and authentication" do
-  scenario "A user logs in" do
+  scenario "A user registers and signs in in" do
     visit "/"
 
     click_link "Register"
@@ -47,5 +47,25 @@ feature "Registration and authentication" do
     click_button "Sign Out"
 
     expect(page).to have_no_content "Welcome"
+  end
+
+  scenario "User cannot to register with an existing email" do
+    visit "/"
+
+    click_link "Register"
+
+    fill_in "Username", with: "hoonta"
+    fill_in "Password", with: "t0psecret"
+    click_button "Register"
+
+    expect(page).to have_content "Thanks for registering"
+
+    click_link "Register"
+
+    fill_in "Username", with: "hoonta"
+    fill_in "Password", with: "thepazzword"
+    click_button "Register"
+
+    expect(page).to have_content "Username has already been taken"
   end
 end
