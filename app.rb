@@ -12,7 +12,13 @@ class App < Sinatra::Application
   end
 
   get "/" do
-    erb :home
+    user = current_user
+
+    if current_user
+      erb :signed_in, locals: {user: user}
+    else
+      erb :signed_out
+    end
   end
 
   get "/register" do
@@ -33,6 +39,14 @@ class App < Sinatra::Application
     else
       erb :register
     end
+  end
+
+  post "/sessions" do
+    user = authenticate_user
+
+    session[:user_id] = user["id"]
+
+    redirect "/"
   end
 
   private
@@ -57,5 +71,27 @@ class App < Sinatra::Application
     flash[:notice] = error_messages.join(", ")
 
     false
+  end
+
+  def authenticate_user
+    select_sql = <<-SQL
+    SELECT * FROM users
+    WHERE username = '#{params[:username]}' AND password = '#{params[:password]}'
+    SQL
+
+    @database_connection.sql(select_sql).first
+  end
+
+  def current_user
+    if session[:user_id]
+      select_sql = <<-SQL
+      SELECT * FROM users
+      WHERE id = #{session[:user_id]}
+      SQL
+
+      @database_connection.sql(select_sql).first
+    else
+      nil
+    end
   end
 end
