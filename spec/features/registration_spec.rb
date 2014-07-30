@@ -4,6 +4,8 @@ feature "Registration and authentication" do
   scenario "A user logs in" do
     visit "/"
 
-    expect(page).to have_link "Register"
+    click_link "Register"
+
+    expect(page).to have_content "Register"
   end
 end
