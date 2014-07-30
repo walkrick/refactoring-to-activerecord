@@ -15,7 +15,8 @@ class App < Sinatra::Application
     user = current_user
 
     if current_user
-      erb :signed_in, locals: {user: user}
+      users = @database_connection.sql("SELECT * FROM users WHERE id != #{user["id"]}")
+      erb :signed_in, locals: {current_user: user, users: users}
     else
       erb :signed_out
     end
