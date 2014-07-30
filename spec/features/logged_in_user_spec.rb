@@ -15,7 +15,7 @@ feature "Logged in user" do
     register_user("Fred", "abcd")
   end
 
-  scenario "can do lots of stuff!" do
+  scenario "can do see and delete other users" do
     visit "/"
 
     register_user("hoonta", "t0psecret")
@@ -34,6 +34,29 @@ feature "Logged in user" do
 
     within ".user-list" do
       expect(page).to have_no_content "Fred"
+    end
+  end
+
+  scenario "can do manage fish" do
+    visit "/"
+
+    register_user("hoonta", "t0psecret")
+
+    fill_in "Username", with: "hoonta"
+    fill_in "Password", with: "t0psecret"
+
+    click_button "Sign In"
+
+    click_link "New Fish"
+
+    fill_in "Name", with: "coelacanth"
+    fill_in "Wikipedia Page", with: "http://en.wikipedia.org/wiki/Coelacanth"
+    click_button "Create Fish"
+
+    expect(page).to have_content "Fish Created"
+
+    within ".fish-list" do
+      expect(page).to have_content "coelacanth"
     end
   end
 end
